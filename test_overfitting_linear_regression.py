@@ -1,3 +1,8 @@
+# Linear Regression
+
+import numpy as np
+import matplotlib.pyplot as plt
+
 def linear_regression(x, y, degree, draw):
 	if len(x)!=len(y):
 		print "x and y have to have the same lenght!"
