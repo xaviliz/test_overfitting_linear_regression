@@ -3,14 +3,14 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-def linear_regression(x, y, degree, draw):
-    print(x, y)
-    import numpy as np
-    import matplotlib.pyplot as plt
+def linear_regression(x: np.ndarray, y: np.ndarray, degree: int, draw: bool):
+    print(f"x: {x}")
+    print(f"y: {y}")
 
     if len(x) != len(y):
         print("x and y have to have the same lenght!")
         return 0
+
     if degree > 0:
         X = np.ones(len(x))
         for i in range(1, degree):
@@ -19,6 +19,7 @@ def linear_regression(x, y, degree, draw):
         # transpose X
         X = np.stack(X, axis=1)
         theta = ((np.linalg.pinv(X.T.dot(X))).dot(X.T)).dot(y)
+
     if draw:
         # Display y
         _, ax = plt.subplots()
@@ -34,8 +35,10 @@ def linear_regression(x, y, degree, draw):
         error = sum(pow(abs(X.dot(theta) - y), 2))
         return theta, error
 
+draw = True
 y = np.random.rand(10)
-for i in range(2,20):
+
+for i in range(2, 20):
     degree = i
-    theta, error = linear_regression(np.arange(0.0,1.0,0.1),y, degree, True)
-    print(f"linear regression with degree: {str(degree)}\n\tquadratic error: {str(error)}")
+    theta, error = linear_regression(np.arange(0.0, 1.0, 0.1), y, degree, draw)
+    print(f"degree: {str(degree)}\nerror: {str(error)}")
